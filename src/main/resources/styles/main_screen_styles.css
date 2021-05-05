@@ -1,0 +1,93 @@
+
+@font-face{
+	src: url('../fonts/Raleway.ttf');
+}
+
+@font-face{
+	src: url('../fonts/Roboto.ttf');
+}
+
+*{
+  pinkish: #f0b3ff;
+  dark-blue: #3b9092;
+  greyish: #e6f4f1;
+  dark: #121212;
+  -fx-font-family: 'Raleway';
+}
+
+.no-insets{
+	-fx-background-insets: 0;
+}
+
+#MainStackPane{
+  -fx-background-color: dark;
+}
+
+.query-label{
+
+	-fx-text-fill: greyish;
+	-fx-font-size: 24;
+
+}
+
+.query-style{
+	-fx-background-color: greyish;
+	-fx-text-fill: dark;
+	-fx-background-radius: 8px;
+}
+
+.border{
+
+  -fx-border-color: dark-blue;
+  -fx-border-style: solid;
+  -fx-border-width: 2px;
+  -fx-border-radius: 5px;
+
+}
+
+.query-choice-box:hover{
+	-fx-cursor: hand;
+}
+
+.query-choice-box .label{
+	-fx-text-fill: dark;
+}
+
+.query-choice-box .open-button .arrow{
+	-fx-background-color: dark;
+}
+
+.query-choice-box .context-menu{
+	-fx-background-color: greyish;
+}
+
+.query-choice-box .context-menu > * > .menu-item:focused .label{
+	-fx-text-fill: greyish;
+}
+
+.query-choice-box .context-menu * .menu-item:hover{
+	-fx-cursor: hand;
+	-fx-background-color: dark-blue;
+}
+
+.query-choice-box .context-menu * .menu-item:focused{
+	-fx-background-color: dark-blue;
+}
+
+.query-choice-box .context-menu > * > .menu-item:checked > .left-container > .radio{
+	-fx-background-color: dark-blue;
+}
+
+.query-choice-box .context-menu > * > .menu-item:focused > .left-container > .radio{
+	-fx-background-color: greyish;
+}
+
+.query-text-field{}
+
+.plus-button{
+	-fx-font-size: 13;
+}
+
+.plus-button:hover{
+	-fx-cursor: hand;
+}

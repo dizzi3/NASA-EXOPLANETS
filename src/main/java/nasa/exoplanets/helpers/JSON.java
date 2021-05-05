@@ -18,7 +18,7 @@ public class JSON {
 		String rawData = IOUtils.toString(is, Charset.forName("UTF-8"));
 		
 		is.close();
-		
+
 		return new JSONArray(rawData);
 	}
 	
