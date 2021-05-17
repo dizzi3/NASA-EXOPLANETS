@@ -2,31 +2,76 @@ package nasa.exoplanets.nodes;
 
 import java.util.ArrayList;
 import javafx.scene.control.ChoiceBox;
-import nasa.exoplanets.vars.Query;
+import javafx.scene.layout.HBox;
+import nasa.exoplanets.query.Query;
+import nasa.exoplanets.query.QueryUI;
 
 public class FlexibleChoiceBox extends ChoiceBox<String>{
 	
-	public void removeAllValuesExceptTheCurrent() {
+	public static ChoiceBox<String> model;
+	private QueryUI queryUI;
+	
+	public FlexibleChoiceBox(QueryUI queryUI) {
+
+		this.queryUI = queryUI;
 		
-		for(String s : getItems()) {
-			
-			if(!s.equals(getValue()))
-				getItems().remove(s);
-			
-		}
+		FlexibleNode.copyProperties(this, model);
+		addQueries();
+		addOnValueChangedListener();
+		
 	}
 	
-	public static void updateItems(ArrayList<ChoiceBox> cBoxes) {
+	private void addQueries() {
 		
-		ArrayList<Query> nonUsedQueries = Query.getNonUsedQueries();
+		for(Query q : Query.queries) {
+			
+			if(!QueryUI.usedQueries.contains(q))
+				getItems().add(q.getName());
+		}
 		
-		for(ChoiceBox b : cBoxes) {
-			b.removeAllValuesExceptTheCurrent();
+		setValue(getItems().get(0));
+		QueryUI.usedQueries.add(Query.find((String) getValue()));
+		
+	}
+	
+	private void addOnValueChangedListener() {
+		
+		setOnAction( event -> {
+			
+			updateItems(queryUI.getChoiceBoxes());
+			
+		});
+		
+	}
+	
+	public void removeAllItemsExceptTheCurrent() {
+		
+		for(int i = 0; i < getItems().size(); i++) {
+			
+			if(!getItems().get(i).equals(getValue())) {
+				getItems().remove(i);
+				i--;
+			}
+			
+		}
+		
+	}
+	
+	public static void updateItems(ArrayList<FlexibleChoiceBox> cBoxes) {
+		
+		QueryUI.usedQueries.clear();
+		
+		for(FlexibleChoiceBox b : cBoxes)
+			QueryUI.usedQueries.add(Query.find(b.getValue()));
+		
+		ArrayList<Query> nonUsedQueries = QueryUI.getNonUsedQueries();
+		
+		for(FlexibleChoiceBox b : cBoxes) {
+			b.removeAllItemsExceptTheCurrent();
 			
 			for(Query q : nonUsedQueries)
 				b.getItems().add(q.getName());
 		}
 	}
-	
 
 }

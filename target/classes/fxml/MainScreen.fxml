@@ -15,14 +15,29 @@
    <children>
       <VBox fx:id="mainVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="no-insets">
          <children>
-            <HBox alignment="CENTER" prefHeight="0.0" prefWidth="1200.0" spacing="10.0">
+            <Label styleClass="query-label" text="Queries">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <HBox fx:id="mainQueryHBox" alignment="CENTER" disable="true" prefHeight="0.0" prefWidth="1200.0" spacing="10.0" visible="false">
                <children>
-                  <Label styleClass="query-label" text="Queries">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="addQueryButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAddQueryButtonClick" text="+">
+                  <ChoiceBox fx:id="queryChoiceBox" prefWidth="150.0">
+                     <styleClass>
+                        <String fx:value="no-insets" />
+                        <String fx:value="border" />
+                        <String fx:value="query-choice-box" />
+                        <String fx:value="query-style" />
+                     </styleClass>
+                  </ChoiceBox>
+                  <TextField fx:id="queryInputTextField">
+                     <styleClass>
+                        <String fx:value="query-text-field" />
+                        <String fx:value="query-style" />
+                        <String fx:value="border" />
+                     </styleClass>
+                  </TextField>
+                  <Button fx:id="removeQueryButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="-">
                      <styleClass>
                         <String fx:value="plus-button" />
                         <String fx:value="no-insets" />
@@ -33,7 +48,7 @@
                         <Font name="Arimo" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="removeQueryButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAddQueryButtonClick" text="-">
+                  <Button fx:id="addQueryButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" text="+">
                      <styleClass>
                         <String fx:value="plus-button" />
                         <String fx:value="no-insets" />
@@ -46,30 +61,11 @@
                   </Button>
                </children>
                <VBox.margin>
-                  <Insets right="180.0" />
+                  <Insets />
                </VBox.margin>
                <padding>
-                  <Insets bottom="10.0" />
+                  <Insets bottom="10.0" top="10.0" />
                </padding>
-            </HBox>
-            <HBox fx:id="mainQueryHBox" alignment="CENTER" prefHeight="31.0" prefWidth="1200.0" spacing="10.0">
-               <children>
-                  <ChoiceBox fx:id="mainQueryChoiceBox" prefWidth="150.0">
-                     <styleClass>
-                        <String fx:value="no-insets" />
-                        <String fx:value="border" />
-                        <String fx:value="query-choice-box" />
-                        <String fx:value="query-style" />
-                     </styleClass>
-                  </ChoiceBox>
-                  <TextField fx:id="mainQueryInputTextField">
-                     <styleClass>
-                        <String fx:value="query-text-field" />
-                        <String fx:value="query-style" />
-                        <String fx:value="border" />
-                     </styleClass>
-                  </TextField>
-               </children>
             </HBox>
          </children>
       </VBox>
