@@ -36,6 +36,32 @@ public class QueryUI {
 		elements.add(element);
 		mainVBox.getChildren().add(element);
 		FlexibleChoiceBox.updateItems(getChoiceBoxes());
+		updateAddButtons();
+		
+	}
+	
+	public void removeElement(QueryUIElement element) {
+		
+		elements.remove(element);
+		mainVBox.getChildren().remove(element);
+		FlexibleChoiceBox.updateItems(getChoiceBoxes());
+		updateAddButtons();
+		
+	}
+	
+	private void updateAddButtons() {
+		
+		QueryUIElement lastElement = elements.get(elements.size()-1);
+		
+		for(QueryUIElement e : elements) {
+			
+			if(e.equals(lastElement))
+				e.showAddQueryButton();
+			else
+				e.hideAddQueryButton();
+				
+			
+		}
 		
 	}
 	

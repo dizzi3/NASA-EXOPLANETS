@@ -16,8 +16,8 @@ public class QueryUIElement extends HBox{
 	private static final double HEIGHT = 0.0;
 	private static final double PADDING = 5.0;
 	
-	private FlexibleRemoveQueryButton removeQueryButton = new FlexibleRemoveQueryButton();
 	private FlexibleTextField textField = new FlexibleTextField();
+	private FlexibleRemoveQueryButton removeQueryButton;
 	private FlexibleAddQueryButton addQueryButton;
 	private FlexibleChoiceBox choiceBox;
 	
@@ -39,6 +39,7 @@ public class QueryUIElement extends HBox{
 		
 		addQueryButton = new FlexibleAddQueryButton(queryUI);
 		choiceBox = new FlexibleChoiceBox(queryUI);
+		removeQueryButton = new FlexibleRemoveQueryButton(queryUI, this);
 		
 	}
 	
