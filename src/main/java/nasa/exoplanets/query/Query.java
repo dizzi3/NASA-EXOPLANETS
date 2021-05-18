@@ -8,7 +8,7 @@ import javafx.scene.layout.HBox;
 public class Query {
 
 	public enum DATA_TYPE{
-		INT, STRING
+		NUMBER, TEXT
 	};
 	
 	private String name;
@@ -17,10 +17,11 @@ public class Query {
 
 	public static ArrayList<Query> queries = new ArrayList<Query>() {{
 		
-		add(new Query("Discovery facility", DATA_TYPE.STRING));
-		add(new Query("Host name", DATA_TYPE.STRING));
-		add(new Query("Discovery method", DATA_TYPE.STRING));
-		add(new Query("Year of discovery", DATA_TYPE.INT));
+		add(new Query("Discovery facility", DATA_TYPE.TEXT));
+		add(new Query("Host name", DATA_TYPE.TEXT));
+		add(new Query("Discovery method", DATA_TYPE.TEXT));
+		add(new Query("Year of discovery", DATA_TYPE.NUMBER));
+		add(new Query("Number of planets", DATA_TYPE.NUMBER));
 		
 	}};
 	
