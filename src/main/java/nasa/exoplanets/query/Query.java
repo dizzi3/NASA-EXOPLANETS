@@ -12,22 +12,23 @@ public class Query {
 	};
 	
 	private String name;
+	private String columnName;
 	private DATA_TYPE dataType;
-	
 
 	public static ArrayList<Query> queries = new ArrayList<Query>() {{
 		
-		add(new Query("Discovery facility", DATA_TYPE.TEXT));
-		add(new Query("Host name", DATA_TYPE.TEXT));
-		add(new Query("Discovery method", DATA_TYPE.TEXT));
-		add(new Query("Year of discovery", DATA_TYPE.NUMBER));
-		add(new Query("Number of planets", DATA_TYPE.NUMBER));
+		add(new Query("Discovery facility", "disc_facility", DATA_TYPE.TEXT));
+		add(new Query("Host name", "hostname", DATA_TYPE.TEXT));
+		add(new Query("Discovery method", "discoverymethod", DATA_TYPE.TEXT));
+		add(new Query("Year of discovery", "disc_year", DATA_TYPE.NUMBER));
+		add(new Query("Number of planets", "sy_pnum", DATA_TYPE.NUMBER));
 		
 	}};
 	
 	
-	public Query(String name, DATA_TYPE dataType) {
+	public Query(String name, String columnName, DATA_TYPE dataType) {
 		this.name = name;
+		this.columnName = columnName;
 		this.dataType = dataType;
 	}
 	
@@ -51,5 +52,8 @@ public class Query {
 		return dataType;
 	}
 
+	public String getColumnName() {
+		return this.columnName;
+	}
 	
 }

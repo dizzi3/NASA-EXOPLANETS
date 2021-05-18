@@ -63,4 +63,8 @@ public class QueryUIElement extends HBox{
 		return this.choiceBox;
 	}
 	
+	public FlexibleTextField getTextField() {
+		return this.textField;
+	}
+	
 }

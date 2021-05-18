@@ -90,4 +90,8 @@ public class QueryUI {
 		return this.elements.size();
 	}
 	
+	public ArrayList<QueryUIElement> getElements(){
+		return this.elements;
+	}
+	
 }
