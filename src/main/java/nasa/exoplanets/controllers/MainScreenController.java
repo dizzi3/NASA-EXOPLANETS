@@ -24,6 +24,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import nasa.exoplanets.data.structures.Planet;
 import nasa.exoplanets.helpers.JSON;
+import nasa.exoplanets.helpers.MainScreenUIHelper;
 import nasa.exoplanets.nodes.FlexibleChoiceBox;
 import nasa.exoplanets.nodes.FlexibleTable;
 import nasa.exoplanets.query.Query;
@@ -54,7 +55,14 @@ public class MainScreenController {
 	@FXML
 	private ChoiceBox queryChoiceBox;
 	
+	@FXML
+	private ChoiceBox<String> displayDataAmountChoiceBox;
+	
+	@FXML
+	private Button searchButton;
+	
 	private QueryUI queryUI;
+	private MainScreenUIHelper UIHelper;
 	
 	public void initialize(){
 
@@ -62,64 +70,10 @@ public class MainScreenController {
 		
 		queryUI = new QueryUI(queryChoiceBox, queryInputTextField, addQueryButton, queriesVBox);
 
-		
-		
-		
-		
-		//JSONObject jsonObj = JSON.readFromURL("https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name,pl_masse,ra,dec+from+ps+where+upper(soltype)+like+%27%CONF%%27+and+pl_masse+between+0.5+and+2.0&format=json").getJSONObject(0);
-		/*
-		ObservableList<Planet>data = FXCollections.observableArrayList(
-				
-				new Planet("11 Com b", "11 Com", 2, 1, "Radial Velocity"),
-				new Planet("11 UMi b", "11 UMi", 1, 1, "Radial Velocity"),
-				new Planet("14 And b", "14 And", 1, 1, "Radial Velocity")
-				
-		);*/
-		
+		UIHelper = new MainScreenUIHelper(displayDataAmountChoiceBox, searchButton, mainVBox, queryUI);
 		//1200x675
 		
 		
-		
-	}
-	
-	public void onSearchButtonClick() {
-		ObservableList<Planet>data = FXCollections.observableArrayList();
-		
-		ArrayList<String>properties = new ArrayList<String>() {{
-			
-			add("pl_name");
-			add("hostname");
-			add("sy_snum");
-			add("sy_pnum");
-			add("discoverymethod");
-			
-		}};
-		
-		try {
-			String query = SQLQuery.generate(properties, queryUI.getElements());
-			JSONArray jArray  = JSON.readFromURL(query);
-			
-			for(int i = 0; i < jArray.length(); i++) {
-				
-				JSONObject obj = jArray.getJSONObject(i);
-				String name = obj.getString("pl_name");
-				String hostname = obj.getString("hostname");
-				String discoverymethod = obj.getString("discoverymethod");
-				int numberOfStars = obj.getInt("sy_snum");
-				int numberOfPlanets = obj.getInt("sy_pnum");
-				
-				data.add(new Planet(name, hostname, numberOfStars, numberOfPlanets, discoverymethod));
-				
-			}
-			
-			System.out.println(jArray.getJSONObject(0).toString());
-		} catch (IOException e) {}
-		
-		
-		
-		FlexibleTable table = new FlexibleTable(data);
-		table.setPrefHeight(750.0);
-		mainVBox.getChildren().add(table);
 		
 	}
 	

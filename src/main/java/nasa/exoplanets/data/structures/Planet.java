@@ -2,6 +2,7 @@ package nasa.exoplanets.data.structures;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import nasa.exoplanets.helpers.MainScreenUIHelper.DATA_AMOUNT;
 
 public class Planet {
 
@@ -11,8 +12,11 @@ public class Planet {
 	private SimpleIntegerProperty numberOfPlanets;
 	private SimpleStringProperty discoveryMethod;
 	
-	public Planet(String name, String hostName, int numberOfStars, int numberOfPlanets, String discoveryMethod) {
+	private DATA_AMOUNT dataAmount;
+	
+	public Planet(DATA_AMOUNT dataAmount, String name, String hostName, int numberOfStars, int numberOfPlanets, String discoveryMethod) {
 		
+		this.dataAmount = dataAmount;
 		this.name = new SimpleStringProperty(name);
 		this.hostName = new SimpleStringProperty(hostName);
 		this.numberOfStars = new SimpleIntegerProperty(numberOfStars);
@@ -59,6 +63,10 @@ public class Planet {
 
 	public void setDiscoveryMethod(String discoveryMethod) {
 		this.discoveryMethod.set(discoveryMethod);;
+	}
+	
+	public DATA_AMOUNT getDataAmount() {
+		return this.dataAmount;
 	}
 	
 }

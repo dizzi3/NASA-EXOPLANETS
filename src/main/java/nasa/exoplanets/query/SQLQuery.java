@@ -32,8 +32,6 @@ public class SQLQuery {
 		
 		builder.append("&format=json");
 		
-		System.out.println(builder.toString());
-		
 		return builder.toString();
 	}
 	
