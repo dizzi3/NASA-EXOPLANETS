@@ -23,7 +23,7 @@ public class SQLQuery {
 			
 			String columnName = q.getColumnName();
 			String value = e.getTextField().getText();
-			System.out.println(value);
+			value = value.replaceAll(" ", "%20");
 			
 			builder.append(columnName + "+like+%27" + value + "%27+and+");
 		}

@@ -24,8 +24,6 @@ public class JSON {
 		String rawData = IOUtils.toString(is, Charset.forName("UTF-8"));
 		
 		is.close();
-
-		System.out.println(URL);
 		
 		return new JSONArray(rawData);
 	}
