@@ -25,6 +25,8 @@ public class JSON {
 		
 		is.close();
 
+		System.out.println(URL);
+		
 		return new JSONArray(rawData);
 	}
 	
@@ -42,9 +44,11 @@ public class JSON {
 			String discoverymethod = obj.getString("discoverymethod");
 			int numberOfStars = obj.getInt("sy_snum");
 			int numberOfPlanets = obj.getInt("sy_pnum");
+			int discoveryYear = obj.getInt("disc_year");
+			String discoveryFacility = obj.getString("disc_facility");
 			
 			if(dataAmount.equals(DATA_AMOUNT.BASIC)) {
-				planets.add(new Planet(dataAmount, name, hostname, numberOfStars, numberOfPlanets, discoverymethod));
+				planets.add(new Planet(dataAmount, name, hostname, numberOfStars, numberOfPlanets, discoverymethod, discoveryYear, discoveryFacility));
 				continue;
 			}
 			

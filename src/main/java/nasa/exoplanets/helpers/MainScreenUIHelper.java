@@ -52,14 +52,13 @@ public class MainScreenUIHelper {
 			
 			ArrayList<String>properties = getProperties();
 			ObservableList<Planet>planets = FXCollections.observableArrayList();
-			
+
 			try {
 				
 				String query = SQLQuery.generate(properties, queryUI.getElements());
 				planets = JSON.getPlanetsFromURL(query, dataAmount);
 				
 			} catch (IOException e) {}
-			
 			
 			FlexibleTable table = new FlexibleTable(planets);
 			table.setPrefHeight(750.0);
@@ -99,6 +98,8 @@ public class MainScreenUIHelper {
 		properties.add("sy_snum");
 		properties.add("sy_pnum");
 		properties.add("discoverymethod");
+		properties.add("disc_year");
+		properties.add("disc_facility");
 		
 		if(dataAmount.equals(DATA_AMOUNT.INTERMEDIATE) || dataAmount.equals(DATA_AMOUNT.ADVANCED)) {
 			

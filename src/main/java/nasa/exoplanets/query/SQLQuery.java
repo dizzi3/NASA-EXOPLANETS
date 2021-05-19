@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 public class SQLQuery {
 
-	//"https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=select+pl_name,pl_masse,ra,dec+from+ps+where+upper(soltype)+like+%27%CONF%%27+and+pl_masse+between+0.5+and+2.0&format=json"
-	
 	public static String generate(ArrayList<String>properties, ArrayList<QueryUIElement> elements) {
 		
 		StringBuilder builder = new StringBuilder();
@@ -21,9 +19,11 @@ public class SQLQuery {
 		
 		for(QueryUIElement e : elements) {
 			
-			Query q = Query.find(e.getChoiceBox().getValue());
+			Query q = Query.find(e.getChoiceBox().getValue().toString());
+			
 			String columnName = q.getColumnName();
 			String value = e.getTextField().getText();
+			System.out.println(value);
 			
 			builder.append(columnName + "+like+%27" + value + "%27+and+");
 		}

@@ -39,9 +39,18 @@ public class FlexibleTable extends TableView<Planet>{
 		discoveryMethodColumn.setMinWidth(170);
 		discoveryMethodColumn.setCellValueFactory(new PropertyValueFactory<Planet, String>("discoveryMethod"));
 		
+		TableColumn<Planet, String> discoveryYearColumn = new TableColumn<>("Discovery year");
+		discoveryYearColumn.setMinWidth(170);
+		discoveryYearColumn.setCellValueFactory(new PropertyValueFactory<Planet, String>("discoveryYear"));
+		
+		TableColumn<Planet, String> discoveryFacilityColumn = new TableColumn<>("Discovery facility");
+		discoveryFacilityColumn.setMinWidth(170);
+		discoveryFacilityColumn.setCellValueFactory(new PropertyValueFactory<Planet, String>("discoveryFacility"));
+		
 		setItems(data);
-		getColumns().addAll(nameColumn, hostNameColumn,
-				numberOfStarsColumn, numberOfPlanetsColumn, discoveryMethodColumn);
+		getColumns().addAll(nameColumn, hostNameColumn, numberOfStarsColumn,
+				numberOfPlanetsColumn, discoveryMethodColumn, discoveryYearColumn,
+				discoveryFacilityColumn);
 	}
 
 }

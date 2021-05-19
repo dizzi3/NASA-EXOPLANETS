@@ -6,15 +6,23 @@ import nasa.exoplanets.helpers.MainScreenUIHelper.DATA_AMOUNT;
 
 public class Planet {
 
+	//BASIC PROPERTIES
 	private SimpleStringProperty name;
 	private SimpleStringProperty hostName;
 	private SimpleIntegerProperty numberOfStars;
 	private SimpleIntegerProperty numberOfPlanets;
 	private SimpleStringProperty discoveryMethod;
+	private SimpleIntegerProperty discoveryYear;
+	private SimpleStringProperty discoveryFacility;
+	
+	//INTERMEDIATE PROPERTIES
+	
+	
 	
 	private DATA_AMOUNT dataAmount;
 	
-	public Planet(DATA_AMOUNT dataAmount, String name, String hostName, int numberOfStars, int numberOfPlanets, String discoveryMethod) {
+	public Planet(DATA_AMOUNT dataAmount, String name, String hostName, int numberOfStars,
+			int numberOfPlanets, String discoveryMethod, int discoveryYear, String discoveryFacility) {
 		
 		this.dataAmount = dataAmount;
 		this.name = new SimpleStringProperty(name);
@@ -22,7 +30,8 @@ public class Planet {
 		this.numberOfStars = new SimpleIntegerProperty(numberOfStars);
 		this.numberOfPlanets = new SimpleIntegerProperty(numberOfPlanets);
 		this.discoveryMethod = new SimpleStringProperty(discoveryMethod);
-		
+		this.discoveryYear = new SimpleIntegerProperty(discoveryYear);
+		this.discoveryFacility = new SimpleStringProperty(discoveryFacility);
 	}
 
 	public String getName() {
@@ -63,6 +72,22 @@ public class Planet {
 
 	public void setDiscoveryMethod(String discoveryMethod) {
 		this.discoveryMethod.set(discoveryMethod);;
+	}
+	
+	public int getDiscoveryYear() {
+		return discoveryYear.get();
+	}
+	
+	public void setDiscoveryYear(int discoveryYear) {
+		this.discoveryYear.set(discoveryYear);
+	}
+	
+	public String getDiscoveryFacility() {
+		return this.discoveryFacility.get();
+	}
+	
+	public void setDiscoveryFacility(String discoveryFacility) {
+		this.discoveryFacility.set(discoveryFacility);
 	}
 	
 	public DATA_AMOUNT getDataAmount() {
