@@ -34,6 +34,9 @@ import nasa.exoplanets.query.SQLQuery;
 public class MainScreenController {
 	
 	@FXML
+	private StackPane MainStackPane;
+	
+	@FXML
 	private TextField queryInputTextField;
 	
 	@FXML
@@ -61,17 +64,26 @@ public class MainScreenController {
 	@FXML
 	private Button searchButton;
 	
+	@FXML
+	private StackPane tableStackPane;
+	
 	private QueryUI queryUI;
 	private MainScreenUIHelper UIHelper;
 	
+
+	//TODO: 1200x675 
+	public static double WIDTH, HEIGHT;
+	
 	public void initialize(){
 
+		WIDTH = MainStackPane.getPrefWidth();
+		HEIGHT = MainStackPane.getPrefHeight();
+		
 		mainQueryHBox.setManaged(false);
 		
 		queryUI = new QueryUI(queryChoiceBox, queryInputTextField, addQueryButton, queriesVBox);
 
-		UIHelper = new MainScreenUIHelper(displayDataAmountChoiceBox, searchButton, mainVBox, queryUI);
-		//1200x675
+		UIHelper = new MainScreenUIHelper(displayDataAmountChoiceBox, searchButton, tableStackPane, queryUI);
 		
 		
 		

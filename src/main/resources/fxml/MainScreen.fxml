@@ -99,6 +99,11 @@
                   <String fx:value="query-style" />
                </styleClass>
             </Button>
+            <StackPane fx:id="tableStackPane" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="1920.0">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </StackPane>
          </children>
       </VBox>
    </children>

@@ -10,7 +10,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import nasa.exoplanets.controllers.MainScreenController;
 import nasa.exoplanets.data.structures.Planet;
 import nasa.exoplanets.nodes.FlexibleTable;
 import nasa.exoplanets.query.QueryUI;
@@ -20,7 +22,7 @@ public class MainScreenUIHelper {
 
 	private ChoiceBox<String> displayDataAmountChoiceBox;
 	private Button searchButton;
-	private VBox tableVBox;
+	private StackPane tableStackPane;
 	private QueryUI queryUI;
 	
 	public enum DATA_AMOUNT{
@@ -35,11 +37,11 @@ public class MainScreenUIHelper {
 	
 	public MainScreenUIHelper(ChoiceBox<String> displayDataAmountChoiceBox,
 							  Button searchButton,
-							  VBox tableVBox,
+							  StackPane tableStackPane,
 							  QueryUI queryUI) {
 		this.displayDataAmountChoiceBox = displayDataAmountChoiceBox;
 		this.searchButton = searchButton;
-		this.tableVBox = tableVBox;
+		this.tableStackPane = tableStackPane;
 		this.queryUI = queryUI;
 		
 		addOnSearchButtonClickListener();
@@ -61,8 +63,11 @@ public class MainScreenUIHelper {
 			} catch (IOException e) {}
 			
 			FlexibleTable table = new FlexibleTable(planets);
-			table.setPrefHeight(750.0);
-			tableVBox.getChildren().add(table);
+			
+			if(FlexibleTable.tableWidth < MainScreenController.WIDTH)
+				tableStackPane.setPrefWidth(FlexibleTable.tableWidth);
+			
+			tableStackPane.getChildren().add(table);
 			
 		});
 		

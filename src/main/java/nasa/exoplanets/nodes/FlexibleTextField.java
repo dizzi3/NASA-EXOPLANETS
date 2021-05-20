@@ -10,6 +10,9 @@ public class FlexibleTextField extends TextField{
 		
 		FlexibleNode.copyProperties(this, model);
 		
+		//TODO: delete below
+		setText("2021");
+		
 	}
 
 }

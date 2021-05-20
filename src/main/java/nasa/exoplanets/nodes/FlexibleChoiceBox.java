@@ -29,7 +29,13 @@ public class FlexibleChoiceBox extends ChoiceBox<String>{
 				getItems().add(q.getName());
 		}
 		
-		setValue(getItems().get(0));
+		
+		setValue(getItems().get(3));
+		//TODO: uncomment below and delete above
+		//setValue(getItems().get(0));
+		
+		
+		
 		QueryUI.usedQueries.add(Query.find((String) getValue()));
 		
 	}
