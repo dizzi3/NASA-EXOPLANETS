@@ -14,6 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import nasa.exoplanets.helpers.MainScreenUIHelper.DATA_AMOUNT;
 import nasa.exoplanets.planets.BasicPlanet;
+import nasa.exoplanets.planets.IntermediatePlanet;
 
 public class JSON {
 
@@ -44,12 +45,10 @@ public class JSON {
 				continue;
 			}
 			
-			
-			//TODO: add intermediate data	
-				
+			IntermediatePlanet intermediatePlanet = getIntermediatePlanet(obj, basicPlanet);
 				
 			if(dataAmount.equals(DATA_AMOUNT.INTERMEDIATE)) {
-				//TODO : add planet with intermediata data amount
+				planets.add(intermediatePlanet);
 				continue;
 			}
 			
@@ -65,12 +64,35 @@ public class JSON {
 		String name = obj.getString("pl_name");
 		String hostname = obj.getString("hostname");
 		String discoverymethod = obj.getString("discoverymethod");
-		int numberOfStars = obj.getInt("sy_snum");
-		int numberOfPlanets = obj.getInt("sy_pnum");
-		int discoveryYear = obj.getInt("disc_year");
 		String discoveryFacility = obj.getString("disc_facility");
 		
+		int numberOfStars = 0;
+		int numberOfPlanets = 0;
+		int discoveryYear = 0;
+		
+		try {	
+			numberOfStars = obj.getInt("sy_snum");
+			numberOfPlanets = obj.getInt("sy_pnum");
+			discoveryYear = obj.getInt("disc_year");
+		}catch(Exception e) {}
+		
+		
 		return new BasicPlanet(name, hostname, numberOfStars, numberOfPlanets, discoverymethod, discoveryYear, discoveryFacility);
+	}
+	
+	private static IntermediatePlanet getIntermediatePlanet(JSONObject obj, BasicPlanet basicPlanet) {
+		
+		double orbitalPeriod = 0.0;
+		double planetRadiusComparedToEarth = 0.0;
+		
+		try {
+			
+			orbitalPeriod = obj.getDouble("pl_orbper");
+			planetRadiusComparedToEarth = obj.getDouble("pl_rade");
+			
+		}catch(Exception e) {}
+		
+		return new IntermediatePlanet(basicPlanet, orbitalPeriod, planetRadiusComparedToEarth);
 	}
 	
 }

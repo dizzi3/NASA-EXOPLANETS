@@ -10,6 +10,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.StackPane;
 import nasa.exoplanets.nodes.FlexibleTable;
 import nasa.exoplanets.planets.BasicPlanet;
+import nasa.exoplanets.planets.IntermediatePlanet;
 import nasa.exoplanets.query.QueryUI;
 import nasa.exoplanets.query.SQLQuery;
 
@@ -81,11 +82,8 @@ public class MainScreenUIHelper {
 			return BasicPlanet.getProperties();
 		
 		
-		if(dataAmount.equals(DATA_AMOUNT.INTERMEDIATE)) {
-			
-			//TODO: FINISH
-			
-		}
+		if(dataAmount.equals(DATA_AMOUNT.INTERMEDIATE))
+			return IntermediatePlanet.getProperties();
 		
 		if(dataAmount.equals(DATA_AMOUNT.ADVANCED)) {
 			
@@ -115,7 +113,7 @@ public class MainScreenUIHelper {
 	
 	private void createAndShowTable(ObservableList<BasicPlanet>planets) {
 		
-		FlexibleTable table = new FlexibleTable(planets);
+		FlexibleTable table = new FlexibleTable(planets, getDataAmountFromCB());
 		
 		if(FlexibleTable.tableWidth < tableStackPane.getPrefWidth())
 			tableStackPane.setPrefWidth(FlexibleTable.tableWidth);

@@ -57,56 +57,28 @@ public class BasicPlanet {
 		return name.get();
 	}
 
-	public void setName(String name) {
-		this.name.set(name);;
-	}
-
 	public String getHostName() {
 		return hostName.get();
-	}
-
-	public void setHostName(String hostName) {
-		this.hostName.set(hostName);;
 	}
 
 	public int getNumberOfStars() {
 		return numberOfStars.get();
 	}
 
-	public void setNumberOfStars(int numberOfStars) {
-		this.numberOfStars.set(numberOfStars);;
-	}
-
 	public int getNumberOfPlanets() {
 		return numberOfPlanets.get();
 	}
 
-	public void setNumberOfPlanets(int numberOfPlanets) {
-		this.numberOfPlanets.set(numberOfPlanets);;
-	}
-
 	public String getDiscoveryMethod() {
 		return discoveryMethod.get();
-	}
-
-	public void setDiscoveryMethod(String discoveryMethod) {
-		this.discoveryMethod.set(discoveryMethod);;
 	}
 	
 	public int getDiscoveryYear() {
 		return discoveryYear.get();
 	}
 	
-	public void setDiscoveryYear(int discoveryYear) {
-		this.discoveryYear.set(discoveryYear);
-	}
-	
 	public String getDiscoveryFacility() {
 		return this.discoveryFacility.get();
-	}
-	
-	public void setDiscoveryFacility(String discoveryFacility) {
-		this.discoveryFacility.set(discoveryFacility);
 	}
 	
 }
