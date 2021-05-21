@@ -1,12 +1,13 @@
-package nasa.exoplanets.data.structures;
+package nasa.exoplanets.planets;
+
+import java.util.ArrayList;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import nasa.exoplanets.helpers.MainScreenUIHelper.DATA_AMOUNT;
 
-public class Planet {
+public class BasicPlanet {
 
-	//BASIC PROPERTIES
 	private SimpleStringProperty name;
 	private SimpleStringProperty hostName;
 	private SimpleIntegerProperty numberOfStars;
@@ -15,16 +16,9 @@ public class Planet {
 	private SimpleIntegerProperty discoveryYear;
 	private SimpleStringProperty discoveryFacility;
 	
-	//INTERMEDIATE PROPERTIES
-	
-	
-	
-	private DATA_AMOUNT dataAmount;
-	
-	public Planet(DATA_AMOUNT dataAmount, String name, String hostName, int numberOfStars,
+	public BasicPlanet(String name, String hostName, int numberOfStars,
 			int numberOfPlanets, String discoveryMethod, int discoveryYear, String discoveryFacility) {
 		
-		this.dataAmount = dataAmount;
 		this.name = new SimpleStringProperty(name);
 		this.hostName = new SimpleStringProperty(hostName);
 		this.numberOfStars = new SimpleIntegerProperty(numberOfStars);
@@ -32,6 +26,31 @@ public class Planet {
 		this.discoveryMethod = new SimpleStringProperty(discoveryMethod);
 		this.discoveryYear = new SimpleIntegerProperty(discoveryYear);
 		this.discoveryFacility = new SimpleStringProperty(discoveryFacility);
+	}
+	
+	public BasicPlanet(BasicPlanet other) {
+		this.name = other.name;
+		this.hostName = other.hostName;
+		this.numberOfStars = other.numberOfStars;
+		this.numberOfPlanets = other.numberOfPlanets;
+		this.discoveryMethod = other.discoveryMethod;
+		this.discoveryYear = other.discoveryYear;
+		this.discoveryFacility = other.discoveryFacility;
+	}
+	
+	public static ArrayList<String> getProperties(){
+		
+		ArrayList<String> properties = new ArrayList<String>();
+		
+		properties.add("pl_name");
+		properties.add("hostname");
+		properties.add("sy_snum");
+		properties.add("sy_pnum");
+		properties.add("discoverymethod");
+		properties.add("disc_year");
+		properties.add("disc_facility");
+		
+		return properties;
 	}
 
 	public String getName() {
@@ -88,10 +107,6 @@ public class Planet {
 	
 	public void setDiscoveryFacility(String discoveryFacility) {
 		this.discoveryFacility.set(discoveryFacility);
-	}
-	
-	public DATA_AMOUNT getDataAmount() {
-		return this.dataAmount;
 	}
 	
 }

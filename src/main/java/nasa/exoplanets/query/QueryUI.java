@@ -40,13 +40,13 @@ public class QueryUI {
 		
 	}
 	
-	public void removeElement(QueryUIElement element) {
+	public ArrayList<FlexibleChoiceBox> getChoiceBoxes(){
 		
-		elements.remove(element);
-		mainVBox.getChildren().remove(element);
-		FlexibleChoiceBox.updateItems(getChoiceBoxes());
-		updateAddButtons();
+		ArrayList<FlexibleChoiceBox> cBoxes = new ArrayList<>();
+		for(QueryUIElement e : elements)
+			cBoxes.add(e.getChoiceBox());
 		
+		return cBoxes;
 	}
 	
 	private void updateAddButtons() {
@@ -59,9 +59,17 @@ public class QueryUI {
 				e.showAddQueryButton();
 			else
 				e.hideAddQueryButton();
-				
 			
 		}
+		
+	}
+	
+	public void removeElement(QueryUIElement element) {
+		
+		elements.remove(element);
+		mainVBox.getChildren().remove(element);
+		FlexibleChoiceBox.updateItems(getChoiceBoxes());
+		updateAddButtons();
 		
 	}
 	
@@ -75,15 +83,6 @@ public class QueryUI {
 		}
 		
 		return nonUsedQueries;
-	}
-	
-	public ArrayList<FlexibleChoiceBox> getChoiceBoxes(){
-		
-		ArrayList<FlexibleChoiceBox> cBoxes = new ArrayList<>();
-		for(QueryUIElement e : elements)
-			cBoxes.add(e.getChoiceBox());
-		
-		return cBoxes;
 	}
 	
 	public int getAmountOfElements() {

@@ -12,8 +12,8 @@ import org.json.JSONObject;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import nasa.exoplanets.data.structures.Planet;
 import nasa.exoplanets.helpers.MainScreenUIHelper.DATA_AMOUNT;
+import nasa.exoplanets.planets.BasicPlanet;
 
 public class JSON {
 
@@ -28,25 +28,19 @@ public class JSON {
 		return new JSONArray(rawData);
 	}
 	
-	public static ObservableList<Planet> getPlanetsFromURL(String URL, DATA_AMOUNT dataAmount) throws MalformedURLException, IOException {
+	public static ObservableList<BasicPlanet> getPlanetsFromURL(String URL, DATA_AMOUNT dataAmount) throws MalformedURLException, IOException {
 		
-		ObservableList<Planet>planets = FXCollections.observableArrayList();
+		ObservableList<BasicPlanet>planets = FXCollections.observableArrayList();
 		
 		JSONArray jArray = readFromURL(URL);
 		
 		for(int i = 0; i < jArray.length(); i++) {
 			
 			JSONObject obj = jArray.getJSONObject(i);
-			String name = obj.getString("pl_name");
-			String hostname = obj.getString("hostname");
-			String discoverymethod = obj.getString("discoverymethod");
-			int numberOfStars = obj.getInt("sy_snum");
-			int numberOfPlanets = obj.getInt("sy_pnum");
-			int discoveryYear = obj.getInt("disc_year");
-			String discoveryFacility = obj.getString("disc_facility");
+			BasicPlanet basicPlanet = getBasicPlanet(obj);
 			
 			if(dataAmount.equals(DATA_AMOUNT.BASIC)) {
-				planets.add(new Planet(dataAmount, name, hostname, numberOfStars, numberOfPlanets, discoverymethod, discoveryYear, discoveryFacility));
+				planets.add(basicPlanet);
 				continue;
 			}
 			
@@ -64,6 +58,19 @@ public class JSON {
 		}
 		
 		return planets;
+	}
+	
+	private static BasicPlanet getBasicPlanet(JSONObject obj) {
+		
+		String name = obj.getString("pl_name");
+		String hostname = obj.getString("hostname");
+		String discoverymethod = obj.getString("discoverymethod");
+		int numberOfStars = obj.getInt("sy_snum");
+		int numberOfPlanets = obj.getInt("sy_pnum");
+		int discoveryYear = obj.getInt("disc_year");
+		String discoveryFacility = obj.getString("disc_facility");
+		
+		return new BasicPlanet(name, hostname, numberOfStars, numberOfPlanets, discoverymethod, discoveryYear, discoveryFacility);
 	}
 	
 }

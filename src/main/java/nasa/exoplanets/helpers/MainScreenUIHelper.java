@@ -3,18 +3,13 @@ package nasa.exoplanets.helpers;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import nasa.exoplanets.controllers.MainScreenController;
-import nasa.exoplanets.data.structures.Planet;
 import nasa.exoplanets.nodes.FlexibleTable;
+import nasa.exoplanets.planets.BasicPlanet;
 import nasa.exoplanets.query.QueryUI;
 import nasa.exoplanets.query.SQLQuery;
 
@@ -33,8 +28,6 @@ public class MainScreenUIHelper {
 		
 	}
 	
-	private DATA_AMOUNT dataAmount = DATA_AMOUNT.BASIC;
-	
 	public MainScreenUIHelper(ChoiceBox<String> displayDataAmountChoiceBox,
 							  Button searchButton,
 							  StackPane tableStackPane,
@@ -44,8 +37,21 @@ public class MainScreenUIHelper {
 		this.tableStackPane = tableStackPane;
 		this.queryUI = queryUI;
 		
-		addOnSearchButtonClickListener();
 		initializeDisplayInfoCB();
+		addOnSearchButtonClickListener();
+	}
+	
+	private void initializeDisplayInfoCB() {
+		
+		for(DATA_AMOUNT d : DATA_AMOUNT.values()) {
+			
+			String dataAmountString = StringManipulator.firstUpperRestLowercase(d.name());
+			displayDataAmountChoiceBox.getItems().add(dataAmountString);
+			
+		}
+
+		displayDataAmountChoiceBox.setValue(displayDataAmountChoiceBox.getItems().get(0));
+		
 	}
 	
 	private void addOnSearchButtonClickListener() {
@@ -53,60 +59,29 @@ public class MainScreenUIHelper {
 		searchButton.setOnAction(event -> {
 			
 			ArrayList<String>properties = getProperties();
-			ObservableList<Planet>planets = FXCollections.observableArrayList();
+			ObservableList<BasicPlanet>planets = FXCollections.observableArrayList();
 
 			try {
 				
 				String query = SQLQuery.generate(properties, queryUI.getElements());
-				planets = JSON.getPlanetsFromURL(query, dataAmount);
+				planets = JSON.getPlanetsFromURL(query, getDataAmountFromCB());
 				
 			} catch (IOException e) {}
 			
-			FlexibleTable table = new FlexibleTable(planets);
-			
-			if(FlexibleTable.tableWidth < MainScreenController.WIDTH)
-				tableStackPane.setPrefWidth(FlexibleTable.tableWidth);
-			
-			tableStackPane.getChildren().add(table);
-			
+			createAndShowTable(planets);
 		});
-		
-	}
-	
-	private void initializeDisplayInfoCB() {
-		
-		displayDataAmountChoiceBox.getItems().add("Basic");
-		displayDataAmountChoiceBox.getItems().add("Intermediate");
-		displayDataAmountChoiceBox.getItems().add("Advanced");
-		displayDataAmountChoiceBox.setValue("Basic");
-		
-	}
-	
-	private DATA_AMOUNT getDataAmountFromCB() {
-		
-		if(displayDataAmountChoiceBox.getValue().equals(displayDataAmountChoiceBox.getItems().get(0)))
-			return DATA_AMOUNT.BASIC;
-		else if(displayDataAmountChoiceBox.getValue().equals(displayDataAmountChoiceBox.getItems().get(1)))
-			return DATA_AMOUNT.INTERMEDIATE;
-		else return DATA_AMOUNT.ADVANCED;
 		
 	}
 	
 	private ArrayList<String> getProperties(){
 		
-		ArrayList<String> properties = new ArrayList<String>();
-		
 		DATA_AMOUNT dataAmount = getDataAmountFromCB();
 		
-		properties.add("pl_name");
-		properties.add("hostname");
-		properties.add("sy_snum");
-		properties.add("sy_pnum");
-		properties.add("discoverymethod");
-		properties.add("disc_year");
-		properties.add("disc_facility");
+		if(dataAmount.equals(DATA_AMOUNT.BASIC))
+			return BasicPlanet.getProperties();
 		
-		if(dataAmount.equals(DATA_AMOUNT.INTERMEDIATE) || dataAmount.equals(DATA_AMOUNT.ADVANCED)) {
+		
+		if(dataAmount.equals(DATA_AMOUNT.INTERMEDIATE)) {
 			
 			//TODO: FINISH
 			
@@ -118,7 +93,34 @@ public class MainScreenUIHelper {
 			
 		}
 			
-		return properties;
+		//TODO: remove
+		return BasicPlanet.getProperties();
+		
+	}
+	
+	private DATA_AMOUNT getDataAmountFromCB() {
+		
+		String choiceBoxValue = displayDataAmountChoiceBox.getValue();
+		
+		for(DATA_AMOUNT d : DATA_AMOUNT.values()) {
+			
+			String dataAmountString = StringManipulator.firstUpperRestLowercase(d.name());
+			if(choiceBoxValue.equals(dataAmountString))
+				return d;
+			
+		}
+
+		return DATA_AMOUNT.BASIC;
+	}
+	
+	private void createAndShowTable(ObservableList<BasicPlanet>planets) {
+		
+		FlexibleTable table = new FlexibleTable(planets);
+		
+		if(FlexibleTable.tableWidth < tableStackPane.getPrefWidth())
+			tableStackPane.setPrefWidth(FlexibleTable.tableWidth);
+		
+		tableStackPane.getChildren().add(table);
 		
 	}
 	

@@ -4,51 +4,51 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import nasa.exoplanets.data.structures.Planet;
+import nasa.exoplanets.planets.BasicPlanet;
 
-public class FlexibleTable extends TableView<Planet>{
+public class FlexibleTable extends TableView<BasicPlanet>{
 	
 	public static double tableWidth = 0.0;
 	private static final double defaultColumnWidth = 170.0;
 	
-	public FlexibleTable(ObservableList<Planet>data) {
+	public FlexibleTable(ObservableList<BasicPlanet>data) {
 		
 		createTableFromData(data);
 		
 	}
 	
 	@SuppressWarnings("unchecked")
-	private void createTableFromData(ObservableList<Planet>data) {
+	private void createTableFromData(ObservableList<BasicPlanet>data) {
 		
 		setEditable(true);
 		
-		TableColumn<Planet, String> nameColumn = new TableColumn<>("Name");
+		TableColumn<BasicPlanet, String> nameColumn = new TableColumn<>("Name");
 		nameColumn.setMinWidth(defaultColumnWidth);
-		nameColumn.setCellValueFactory(new PropertyValueFactory<Planet, String>("name"));
+		nameColumn.setCellValueFactory(new PropertyValueFactory<BasicPlanet, String>("name"));
 		
-		TableColumn<Planet, String> hostNameColumn = new TableColumn<>("Host name");
+		TableColumn<BasicPlanet, String> hostNameColumn = new TableColumn<>("Host name");
 		hostNameColumn.setMinWidth(defaultColumnWidth);
-		hostNameColumn.setCellValueFactory(new PropertyValueFactory<Planet, String>("hostName"));
+		hostNameColumn.setCellValueFactory(new PropertyValueFactory<BasicPlanet, String>("hostName"));
 
-		TableColumn<Planet, String> numberOfStarsColumn = new TableColumn<>("Number of stars");
+		TableColumn<BasicPlanet, String> numberOfStarsColumn = new TableColumn<>("Number of stars");
 		numberOfStarsColumn.setMinWidth(defaultColumnWidth);
-		numberOfStarsColumn.setCellValueFactory(new PropertyValueFactory<Planet, String>("numberOfStars"));
+		numberOfStarsColumn.setCellValueFactory(new PropertyValueFactory<BasicPlanet, String>("numberOfStars"));
 
-		TableColumn<Planet, String> numberOfPlanetsColumn = new TableColumn<>("Number of planets");
+		TableColumn<BasicPlanet, String> numberOfPlanetsColumn = new TableColumn<>("Number of planets");
 		numberOfPlanetsColumn.setMinWidth(defaultColumnWidth);
-		numberOfPlanetsColumn.setCellValueFactory(new PropertyValueFactory<Planet, String>("numberOfPlanets"));
+		numberOfPlanetsColumn.setCellValueFactory(new PropertyValueFactory<BasicPlanet, String>("numberOfPlanets"));
 		
-		TableColumn<Planet, String> discoveryMethodColumn = new TableColumn<>("Discovery method");
+		TableColumn<BasicPlanet, String> discoveryMethodColumn = new TableColumn<>("Discovery method");
 		discoveryMethodColumn.setMinWidth(defaultColumnWidth);
-		discoveryMethodColumn.setCellValueFactory(new PropertyValueFactory<Planet, String>("discoveryMethod"));
+		discoveryMethodColumn.setCellValueFactory(new PropertyValueFactory<BasicPlanet, String>("discoveryMethod"));
 		
-		TableColumn<Planet, String> discoveryYearColumn = new TableColumn<>("Discovery year");
+		TableColumn<BasicPlanet, String> discoveryYearColumn = new TableColumn<>("Discovery year");
 		discoveryYearColumn.setMinWidth(defaultColumnWidth);
-		discoveryYearColumn.setCellValueFactory(new PropertyValueFactory<Planet, String>("discoveryYear"));
+		discoveryYearColumn.setCellValueFactory(new PropertyValueFactory<BasicPlanet, String>("discoveryYear"));
 		
-		TableColumn<Planet, String> discoveryFacilityColumn = new TableColumn<>("Discovery facility");
+		TableColumn<BasicPlanet, String> discoveryFacilityColumn = new TableColumn<>("Discovery facility");
 		discoveryFacilityColumn.setMinWidth(defaultColumnWidth + 10);
-		discoveryFacilityColumn.setCellValueFactory(new PropertyValueFactory<Planet, String>("discoveryFacility"));
+		discoveryFacilityColumn.setCellValueFactory(new PropertyValueFactory<BasicPlanet, String>("discoveryFacility"));
 		
 		setItems(data);
 		getColumns().addAll(nameColumn, hostNameColumn, numberOfStarsColumn,
@@ -62,7 +62,7 @@ public class FlexibleTable extends TableView<Planet>{
 
 		tableWidth = 0.0;
 		
-		for(TableColumn<Planet, ?> s : getColumns())
+		for(TableColumn<BasicPlanet, ?> s : getColumns())
 			tableWidth += s.getMinWidth();
 	
 	}
