@@ -4,21 +4,15 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import nasa.exoplanets.helpers.MainScreenUIHelper.DATA_AMOUNT;
 import nasa.exoplanets.planets.BasicPlanet;
-import nasa.exoplanets.query.Query.DATA_TYPE;
 
-public class FlexibleTable extends TableView<BasicPlanet>{
+public class BasicTable extends TableView<BasicPlanet>{
 	
 	public static double tableWidth = 0.0;
-	private static final double defaultColumnWidth = 170.0;
-	private DATA_AMOUNT dataAmount;
+	protected static final double defaultColumnWidth = 170.0;
 	
-	public FlexibleTable(ObservableList<BasicPlanet>data, DATA_AMOUNT dataAmount) {
-		
-		this.dataAmount = dataAmount;
+	public BasicTable(ObservableList<BasicPlanet>data) {
 		createTableFromData(data);
-		
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -26,8 +20,7 @@ public class FlexibleTable extends TableView<BasicPlanet>{
 		
 		setEditable(true);
 		
-		addBasicColumns();
-		addIntermediateColumns();
+		addColumns();
 		
 		setItems(data);
 		
@@ -35,7 +28,7 @@ public class FlexibleTable extends TableView<BasicPlanet>{
 	}
 	
 	@SuppressWarnings("unchecked")
-	private void addBasicColumns() {
+	protected void addColumns() {
 		
 		TableColumn<BasicPlanet, String> nameColumn = new TableColumn<>("Name");
 		nameColumn.setMinWidth(defaultColumnWidth);
@@ -69,23 +62,6 @@ public class FlexibleTable extends TableView<BasicPlanet>{
 				numberOfPlanetsColumn, discoveryMethodColumn, discoveryYearColumn,
 				discoveryFacilityColumn);
 		
-	}
-	
-	@SuppressWarnings("unchecked")
-	private void addIntermediateColumns() {
-		
-		if(!(dataAmount == DATA_AMOUNT.INTERMEDIATE) && !(dataAmount == DATA_AMOUNT.ADVANCED))
-			return;
-		
-		TableColumn<BasicPlanet, String> orbitalPeriodColumn = new TableColumn<>("Orbital period");
-		orbitalPeriodColumn.setMinWidth(defaultColumnWidth);
-		orbitalPeriodColumn.setCellValueFactory(new PropertyValueFactory<BasicPlanet, String>("orbitalPeriod"));
-		
-		TableColumn<BasicPlanet, String> radiusComparedToEarthColumn = new TableColumn<>("Planet radius [Earth radius]");
-		radiusComparedToEarthColumn.setMinWidth(defaultColumnWidth + 50);
-		radiusComparedToEarthColumn.setCellValueFactory(new PropertyValueFactory<BasicPlanet, String>("planetRadiusComparedToEarth"));
-		
-		getColumns().addAll(orbitalPeriodColumn, radiusComparedToEarthColumn);
 	}
 	
 	private void setTableWidth() {

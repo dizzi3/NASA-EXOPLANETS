@@ -8,7 +8,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.StackPane;
-import nasa.exoplanets.nodes.FlexibleTable;
+import nasa.exoplanets.nodes.BasicTable;
+import nasa.exoplanets.nodes.IntermediateTable;
 import nasa.exoplanets.planets.BasicPlanet;
 import nasa.exoplanets.planets.IntermediatePlanet;
 import nasa.exoplanets.query.QueryUI;
@@ -81,7 +82,6 @@ public class MainScreenUIHelper {
 		if(dataAmount.equals(DATA_AMOUNT.BASIC))
 			return BasicPlanet.getProperties();
 		
-		
 		if(dataAmount.equals(DATA_AMOUNT.INTERMEDIATE))
 			return IntermediatePlanet.getProperties();
 		
@@ -113,10 +113,19 @@ public class MainScreenUIHelper {
 	
 	private void createAndShowTable(ObservableList<BasicPlanet>planets) {
 		
-		FlexibleTable table = new FlexibleTable(planets, getDataAmountFromCB());
+		BasicTable table;
+		DATA_AMOUNT dataAmount = getDataAmountFromCB();
 		
-		if(FlexibleTable.tableWidth < tableStackPane.getPrefWidth())
-			tableStackPane.setPrefWidth(FlexibleTable.tableWidth);
+		if(dataAmount == DATA_AMOUNT.BASIC)
+			table = new BasicTable(planets);
+		else if(dataAmount == DATA_AMOUNT.INTERMEDIATE)
+			table = new IntermediateTable(planets);
+		else 
+			table = new BasicTable(planets);
+		//TODO: change above else to advanced table
+		
+		if(BasicTable.tableWidth < tableStackPane.getPrefWidth())
+			tableStackPane.setPrefWidth(BasicTable.tableWidth);
 		
 		tableStackPane.getChildren().add(table);
 		
