@@ -10,8 +10,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
+import nasa.exoplanets.nodes.tables.AdvancedTable;
 import nasa.exoplanets.nodes.tables.BasicTable;
 import nasa.exoplanets.nodes.tables.IntermediateTable;
+import nasa.exoplanets.planets.AdvancedPlanet;
 import nasa.exoplanets.planets.BasicPlanet;
 import nasa.exoplanets.planets.IntermediatePlanet;
 import nasa.exoplanets.query.QueryUI;
@@ -54,7 +56,8 @@ public class MainScreenUIHelper {
 			
 		}
 
-		displayDataAmountChoiceBox.setValue(displayDataAmountChoiceBox.getItems().get(0));
+		//TODO: change back to 0
+		displayDataAmountChoiceBox.setValue(displayDataAmountChoiceBox.getItems().get(2));
 		
 	}
 	
@@ -87,15 +90,10 @@ public class MainScreenUIHelper {
 		if(dataAmount.equals(DATA_AMOUNT.INTERMEDIATE))
 			return IntermediatePlanet.getProperties();
 		
-		if(dataAmount.equals(DATA_AMOUNT.ADVANCED)) {
+		if(dataAmount.equals(DATA_AMOUNT.ADVANCED))
+			return AdvancedPlanet.getProperties();
 			
-			//TODO: FINISH
-			
-		}
-			
-		//TODO: remove
 		return BasicPlanet.getProperties();
-		
 	}
 	
 	private DATA_AMOUNT getDataAmountFromCB() {
@@ -123,8 +121,7 @@ public class MainScreenUIHelper {
 		else if(dataAmount == DATA_AMOUNT.INTERMEDIATE)
 			table = new IntermediateTable(planets);
 		else 
-			table = new BasicTable(planets);
-		//TODO: change above else to advanced table
+			table = new AdvancedTable(planets);
 		
 		setTablePaneWidth();
 		

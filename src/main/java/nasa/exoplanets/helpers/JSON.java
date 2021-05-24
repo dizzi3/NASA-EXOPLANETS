@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import nasa.exoplanets.helpers.MainScreenUIHelper.DATA_AMOUNT;
+import nasa.exoplanets.planets.AdvancedPlanet;
 import nasa.exoplanets.planets.BasicPlanet;
 import nasa.exoplanets.planets.IntermediatePlanet;
 
@@ -52,7 +53,8 @@ public class JSON {
 				continue;
 			}
 			
-			//TODO: add advanced data and add planet
+			AdvancedPlanet advancedPlanet = getAdvancedPlanet(obj, intermediatePlanet);
+			planets.add(advancedPlanet);
 			
 		}
 		
@@ -61,45 +63,84 @@ public class JSON {
 	
 	private static BasicPlanet getBasicPlanet(JSONObject obj) {
 		
-		String name = obj.getString("pl_name");
-		String hostname = obj.getString("hostname");
-		String discoverymethod = obj.getString("discoverymethod");
-		String discoveryFacility = obj.getString("disc_facility");
+		String name = getStringProperty("pl_name", obj);
+		String hostname = getStringProperty("hostname", obj);
+		String discoverymethod = getStringProperty("discoverymethod", obj);
+		String discoveryFacility = getStringProperty("disc_facility", obj);
 		
-		int numberOfStars = 0;
-		int numberOfPlanets = 0;
-		int discoveryYear = 0;
-		
-		try {	
-			numberOfStars = obj.getInt("sy_snum");
-			numberOfPlanets = obj.getInt("sy_pnum");
-			discoveryYear = obj.getInt("disc_year");
-		}catch(Exception e) {}
-		
+		int numberOfStars = getIntProperty("sy_snum", obj);
+		int numberOfPlanets = getIntProperty("sy_pnum", obj);
+		int discoveryYear = getIntProperty("disc_year", obj);
 		
 		return new BasicPlanet(name, hostname, numberOfStars, numberOfPlanets, discoverymethod, discoveryYear, discoveryFacility);
 	}
 	
 	private static IntermediatePlanet getIntermediatePlanet(JSONObject obj, BasicPlanet basicPlanet) {
 		
-		double orbitalPeriod = 0.0;
-		double planetRadiusComparedToEarth = 0.0;
-		double planetMassComparedToEarth = 0.0;
-		double stellarSurfaceGravity = 0.0;
-		double distance = 0.0;
-		
-		try {
-			
-			orbitalPeriod = obj.getDouble("pl_orbper");
-			planetRadiusComparedToEarth = obj.getDouble("pl_rade");
-			planetMassComparedToEarth = obj.getDouble("pl_bmasse");
-			stellarSurfaceGravity = obj.getDouble("st_logg");
-			distance = obj.getDouble("sy_dist");
-			
-		}catch(Exception e) {}
+		double orbitalPeriod = getDoubleProperty("pl_orbper", obj);
+		double planetRadiusComparedToEarth = getDoubleProperty("pl_rade", obj);
+		double planetMassComparedToEarth = getDoubleProperty("pl_bmasse", obj);
+		double stellarSurfaceGravity = getDoubleProperty("st_logg", obj);
+		double distance = getDoubleProperty("sy_dist", obj);
 		
 		return new IntermediatePlanet(basicPlanet, orbitalPeriod, planetRadiusComparedToEarth, planetMassComparedToEarth,
 				stellarSurfaceGravity, distance);
+	}
+	
+	private static AdvancedPlanet getAdvancedPlanet(JSONObject obj, IntermediatePlanet intermediatePlanet) {
+		
+		int controversialFlag = getIntProperty("pl_controv_flag", obj);
+		double orbitSemiMajorAxis = getDoubleProperty("pl_orbsmax", obj);
+		double planetRadiusComparedToJupiter = getDoubleProperty("pl_radj", obj);
+		double planetMassComparedToJupiter = getDoubleProperty("pl_bmassj", obj);
+		String planetMassProvenance = getStringProperty("pl_bmassprov", obj);
+		double eccentricity = getDoubleProperty("pl_orbeccen", obj);
+		double insolationFlux = getDoubleProperty("pl_insol", obj);
+		double equilibriumTemperature = getDoubleProperty("pl_eqt", obj);
+		int dataShowTransitTimingVariations = getIntProperty("ttv_flag", obj);
+		String spectralType = getStringProperty("st_spectype", obj);
+		double stellarEffectiveTemperature = getDoubleProperty("st_teff", obj);
+		double stellarRadius = getDoubleProperty("st_rad", obj);
+		double stellarMass = getDoubleProperty("st_mass", obj);
+		double stellarMetallicity = getDoubleProperty("st_met", obj);
+		String stellarMetallicityRatio = getStringProperty("st_metratio", obj);
+		String RA = getStringProperty("rastr", obj);
+		String Dec = getStringProperty("decstr", obj);
+		double VJohnsonMagnitude = getDoubleProperty("sy_vmag", obj);
+		double Ks2MASSMagnitude = getDoubleProperty("sy_kmag", obj);
+		double GaiaMagnitude = getDoubleProperty("sy_gaiamag", obj);
+	
+		return new AdvancedPlanet(intermediatePlanet, controversialFlag, orbitSemiMajorAxis, planetRadiusComparedToJupiter,
+				planetMassComparedToJupiter, planetMassProvenance, eccentricity, insolationFlux, equilibriumTemperature, 
+				dataShowTransitTimingVariations, spectralType, stellarEffectiveTemperature, stellarRadius, stellarMass,
+				stellarMetallicity, stellarMetallicityRatio, RA, Dec, VJohnsonMagnitude, Ks2MASSMagnitude, GaiaMagnitude);
+	}
+	
+	private static double getDoubleProperty(String key, JSONObject obj) {
+		
+		try {
+			return obj.getDouble(key);
+		}catch(Exception e) {}
+		
+		return 0.0;
+	}
+	
+	private static int getIntProperty(String key, JSONObject obj) {
+		
+		try {
+			return obj.getInt(key);
+		}catch(Exception e) {}
+		
+		return 0;
+	}
+	
+	private static String getStringProperty(String key, JSONObject obj) {
+		
+		try {
+			return obj.getString(key);
+		}catch(Exception e) {}
+		
+		return "";
 	}
 	
 }

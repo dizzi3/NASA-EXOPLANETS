@@ -29,7 +29,7 @@ public class BasicTable extends TableView<BasicPlanet>{
 	
 	protected void addColumns() {
 		
-		addColumn("Name", "name");
+		addColumn("Planet Name", "name");
 		addColumn("Host Name", "hostName");
 		addColumn("Number Of Stars", "numberOfStars");
 		addColumn("Number Of Planets", "numberOfPlanets");
@@ -55,6 +55,24 @@ public class BasicTable extends TableView<BasicPlanet>{
 		column.setCellValueFactory(new PropertyValueFactory<BasicPlanet, String>(property));
 		
 		getColumns().add(column);
+	}
+	
+	protected void addColumnAt(String name, String property, int index) {
+		
+		TableColumn<BasicPlanet, String> column = new TableColumn<>(name);
+		column.setMinWidth(defaultColumnWidth);
+		column.setCellValueFactory(new PropertyValueFactory<BasicPlanet, String>(property));
+		
+		getColumns().add(index, column);
+	}
+	
+	protected void addColumnAt(String name, String property, int index, double columnWidth) {
+		
+		TableColumn<BasicPlanet, String> column = new TableColumn<>(name);
+		column.setMinWidth(columnWidth);
+		column.setCellValueFactory(new PropertyValueFactory<BasicPlanet, String>(property));
+		
+		getColumns().add(index, column);
 	}
 	
 	private void setTableWidth() {
