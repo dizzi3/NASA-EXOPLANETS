@@ -32,7 +32,7 @@ public class JSON {
 	public static ObservableList<BasicPlanet> getPlanetsFromURL(String URL, DATA_AMOUNT dataAmount) throws MalformedURLException, IOException {
 		
 		ObservableList<BasicPlanet>planets = FXCollections.observableArrayList();
-		
+
 		JSONArray jArray = readFromURL(URL);
 		
 		for(int i = 0; i < jArray.length(); i++) {
@@ -84,15 +84,22 @@ public class JSON {
 		
 		double orbitalPeriod = 0.0;
 		double planetRadiusComparedToEarth = 0.0;
+		double planetMassComparedToEarth = 0.0;
+		double stellarSurfaceGravity = 0.0;
+		double distance = 0.0;
 		
 		try {
 			
 			orbitalPeriod = obj.getDouble("pl_orbper");
 			planetRadiusComparedToEarth = obj.getDouble("pl_rade");
+			planetMassComparedToEarth = obj.getDouble("pl_bmasse");
+			stellarSurfaceGravity = obj.getDouble("st_logg");
+			distance = obj.getDouble("sy_dist");
 			
 		}catch(Exception e) {}
 		
-		return new IntermediatePlanet(basicPlanet, orbitalPeriod, planetRadiusComparedToEarth);
+		return new IntermediatePlanet(basicPlanet, orbitalPeriod, planetRadiusComparedToEarth, planetMassComparedToEarth,
+				stellarSurfaceGravity, distance);
 	}
 	
 }

@@ -10,6 +10,7 @@ public class BasicTable extends TableView<BasicPlanet>{
 	
 	public static double tableWidth = 0.0;
 	protected static final double defaultColumnWidth = 170.0;
+	public static final double sideMargins = 50.0;
 	
 	public BasicTable(ObservableList<BasicPlanet>data) {
 		createTableFromData(data);
@@ -29,12 +30,12 @@ public class BasicTable extends TableView<BasicPlanet>{
 	protected void addColumns() {
 		
 		addColumn("Name", "name");
-		addColumn("Host name", "hostName");
-		addColumn("Number of stars", "numberOfStars");
-		addColumn("Number of planets", "numberOfPlanets");
-		addColumn("Discovery method", "discoveryMethod");
-		addColumn("Discovery year", "discoveryYear");
-		addColumn("Discovery facility", "discoveryFacility", 300.0);
+		addColumn("Host Name", "hostName");
+		addColumn("Number Of Stars", "numberOfStars");
+		addColumn("Number Of Planets", "numberOfPlanets");
+		addColumn("Discovery Method", "discoveryMethod");
+		addColumn("Discovery Year", "discoveryYear");
+		addColumn("Discovery Facility", "discoveryFacility", 300.0);
 		
 	}
 	

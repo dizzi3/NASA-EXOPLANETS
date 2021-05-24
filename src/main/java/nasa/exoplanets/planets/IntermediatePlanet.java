@@ -10,14 +10,21 @@ public class IntermediatePlanet extends BasicPlanet{
 	
 	private SimpleDoubleProperty orbitalPeriod;
 	private SimpleDoubleProperty planetRadiusComparedToEarth;
+	private SimpleDoubleProperty planetMassComparedToEarth;
+	private SimpleDoubleProperty stellarSurfaceGravity;
+	private SimpleDoubleProperty distance;
 	
 	public IntermediatePlanet(BasicPlanet basicPlanet, double orbitalPeriod,
-			double planetRadiusComparedToEarth){
+			double planetRadiusComparedToEarth, double planetMassComparedToEarth,
+			double stellarSurfaceGravity, double distance){
 		
 		super(basicPlanet);
 		this.basicPlanet = basicPlanet;
 		this.orbitalPeriod = new SimpleDoubleProperty(orbitalPeriod);
 		this.planetRadiusComparedToEarth = new SimpleDoubleProperty(planetRadiusComparedToEarth);
+		this.planetMassComparedToEarth = new SimpleDoubleProperty(planetMassComparedToEarth);
+		this.stellarSurfaceGravity = new SimpleDoubleProperty(stellarSurfaceGravity);
+		this.distance = new SimpleDoubleProperty(distance);
 		
 	}
 	
@@ -26,6 +33,9 @@ public class IntermediatePlanet extends BasicPlanet{
 		
 		this.orbitalPeriod = other.orbitalPeriod;
 		this.planetRadiusComparedToEarth = other.planetRadiusComparedToEarth;
+		this.planetMassComparedToEarth = other.planetMassComparedToEarth;
+		this.stellarSurfaceGravity = other.stellarSurfaceGravity;
+		this.distance = other.distance;
 	}
 
 	public static ArrayList<String> getProperties(){
@@ -34,6 +44,9 @@ public class IntermediatePlanet extends BasicPlanet{
 		
 		properties.add("pl_orbper");
 		properties.add("pl_rade");
+		properties.add("pl_bmasse");
+		properties.add("st_logg");
+		properties.add("sy_dist");
 		
 		return properties;
 	}
@@ -44,6 +57,18 @@ public class IntermediatePlanet extends BasicPlanet{
 	
 	public double getPlanetRadiusComparedToEarth() {
 		return planetRadiusComparedToEarth.get();
+	}
+	
+	public double getPlanetMassComparedToEarth() {
+		return planetMassComparedToEarth.get();
+	}
+	
+	public double getStellarSurfaceGravity() {
+		return stellarSurfaceGravity.get();
+	}
+	
+	public double getDistance() {
+		return distance.get();
 	}
 	
 }

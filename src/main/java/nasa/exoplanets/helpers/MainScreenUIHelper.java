@@ -5,9 +5,11 @@ import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Screen;
 import nasa.exoplanets.nodes.tables.BasicTable;
 import nasa.exoplanets.nodes.tables.IntermediateTable;
 import nasa.exoplanets.planets.BasicPlanet;
@@ -124,10 +126,22 @@ public class MainScreenUIHelper {
 			table = new BasicTable(planets);
 		//TODO: change above else to advanced table
 		
-		if(BasicTable.tableWidth < tableStackPane.getPrefWidth())
-			tableStackPane.setPrefWidth(BasicTable.tableWidth);
+		setTablePaneWidth();
 		
 		tableStackPane.getChildren().add(table);
+		
+	}
+	
+	private void setTablePaneWidth() {
+		
+		if(BasicTable.tableWidth < tableStackPane.getPrefWidth())
+			tableStackPane.setPrefWidth(BasicTable.tableWidth);
+		else {
+			
+			Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+			tableStackPane.setPrefWidth(screenBounds.getWidth() - BasicTable.sideMargins);
+			
+		}
 		
 	}
 	
