@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
+import nasa.exoplanets.Main;
 import nasa.exoplanets.nodes.tables.AdvancedTable;
 import nasa.exoplanets.nodes.tables.BasicTable;
 import nasa.exoplanets.nodes.tables.IntermediateTable;
@@ -23,7 +24,6 @@ public class MainScreenUIHelper {
 
 	private ChoiceBox<String> displayDataAmountChoiceBox;
 	private Button searchButton;
-	private StackPane tableStackPane;
 	private QueryUI queryUI;
 	
 	public enum DATA_AMOUNT{
@@ -36,11 +36,9 @@ public class MainScreenUIHelper {
 	
 	public MainScreenUIHelper(ChoiceBox<String> displayDataAmountChoiceBox,
 							  Button searchButton,
-							  StackPane tableStackPane,
 							  QueryUI queryUI) {
 		this.displayDataAmountChoiceBox = displayDataAmountChoiceBox;
 		this.searchButton = searchButton;
-		this.tableStackPane = tableStackPane;
 		this.queryUI = queryUI;
 		
 		initializeDisplayInfoCB();
@@ -74,7 +72,10 @@ public class MainScreenUIHelper {
 				
 			} catch (IOException e) {}
 			
-			createAndShowTable(planets);
+			try {
+				Main.switchToResultScene(getDataFilledTable(planets));
+			} catch (IOException e) {}
+			
 		});
 		
 	}
@@ -110,7 +111,7 @@ public class MainScreenUIHelper {
 		return DATA_AMOUNT.BASIC;
 	}
 	
-	private void createAndShowTable(ObservableList<BasicPlanet>planets) {
+	private BasicTable getDataFilledTable(ObservableList<BasicPlanet>planets) {
 		
 		BasicTable table;
 		DATA_AMOUNT dataAmount = getDataAmountFromCB();
@@ -122,12 +123,13 @@ public class MainScreenUIHelper {
 		else 
 			table = new AdvancedTable(planets);
 		
-		setTablePaneWidth();
+		//TODO: DELETE
+		//setTablePaneWidth();
 		
-		tableStackPane.getChildren().add(table);
-		
+		return table;
 	}
 	
+	/* TODO: DELETE
 	private void setTablePaneWidth() {
 		
 		if(BasicTable.tableWidth < tableStackPane.getPrefWidth())
@@ -139,6 +141,6 @@ public class MainScreenUIHelper {
 			
 		}
 		
-	}
+	}*/
 	
 }

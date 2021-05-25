@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import nasa.exoplanets.Main;
 import nasa.exoplanets.helpers.MainScreenUIHelper;
 import nasa.exoplanets.query.QueryUI;
 
@@ -21,7 +22,7 @@ public class MainScreenController {
 		
 		queryUI = new QueryUI(queryChoiceBox, queryInputTextField, addQueryButton, queriesVBox);
 
-		UIHelper = new MainScreenUIHelper(displayDataAmountChoiceBox, searchButton, tableStackPane, queryUI);
+		UIHelper = new MainScreenUIHelper(displayDataAmountChoiceBox, searchButton, queryUI);
 		
 	}
 	
@@ -54,8 +55,5 @@ public class MainScreenController {
 	
 	@FXML
 	private Button searchButton;
-	
-	@FXML
-	private StackPane tableStackPane;
 	
 }
