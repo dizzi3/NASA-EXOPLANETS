@@ -9,9 +9,11 @@
 
 *{
   pinkish: #f0b3ff;
-  dark-blue: #3b9092;
+  dark-blue: #009FC7;
   greyish: #e6f4f1;
   dark: #121212;
+	light-blue: #66e0ff;
+	table-text-color: #000855;
 
   -fx-font-family: 'Raleway';
 }
@@ -22,6 +24,11 @@
 
 #MainStackPane{
   -fx-background-color: dark;
+}
+
+.header-label{
+	-fx-text-fill: greyish;
+	-fx-font-size: 40;
 }
 
 .query-label{
@@ -85,10 +92,64 @@
 
 .query-text-field{}
 
+.search-button{
+	-fx-font-size: 17;
+}
+
+.search-button:hover{
+	-fx-cursor: hand;
+}
+
 .plus-button{
 	-fx-font-size: 13;
 }
 
 .plus-button:hover{
 	-fx-cursor: hand;
+}
+
+
+/*TABLE STYLES*/
+
+.table-view{
+	-fx-font-size: 16;
+	-fx-background-color: dark;
+}
+
+.table-view .column-overlay{
+	-fx-background-color: yellow;
+	-fx-border-color: yellow;
+}
+
+.column-header-background{
+	-fx-color: light-blue;
+	-fx-font-size: 18;
+}
+
+.column-header-background .label{
+	-fx-text-fill: table-text-color;
+}
+
+.table-view .cell:odd{
+	-fx-text-fill: table-text-color;
+}
+
+.table-view .cell:even{
+	-fx-text-fill: table-text-color;
+}
+
+.table-row-cell:even{
+
+}
+
+.table-row-cell:selected{
+	-fx-background-color: #809fff;
+}
+
+.table-row-cell:hover{
+	-fx-background-color: #b3f0ff;
+}
+
+.table-view .arrow{
+	-fx-background-color: table-text-color;
 }

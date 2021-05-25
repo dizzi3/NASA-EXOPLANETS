@@ -15,8 +15,8 @@ public class IntermediateTable extends BasicTable{
 		super.addColumns();
 
 		addColumn("Orbital Period [Days]", "orbitalPeriod");
-		addColumn("Planet Radius [Earth Radius]", "planetRadiusComparedToEarth", 250.0);
-		addColumn("Planet Mass [Earth Mass]", "planetMassComparedToEarth");
+		addColumn("Planet Radius [Earth Radius]", "planetRadiusComparedToEarth", 270.0);
+		addColumn("Planet Mass [Earth Mass]", "planetMassComparedToEarth", 270.0);
 		addColumn("Stellar Surface Gravity", "stellarSurfaceGravity");
 		addColumn("Distance [Parsec]", "distance");
 		

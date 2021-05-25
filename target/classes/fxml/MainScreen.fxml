@@ -15,7 +15,12 @@
    <children>
       <VBox fx:id="mainVBox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="68.0" prefWidth="1920.0" spacing="10.0">
+            <Label styleClass="header-label" text="EXOPLANETS">
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="68.0" prefWidth="1920.0" spacing="10.0">
                <children>
                   <Label styleClass="query-label" text="Display information">
                      <font>
@@ -31,13 +36,19 @@
                      </styleClass>
                   </ChoiceBox>
                </children>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
             </HBox>
-            <VBox fx:id="queriesVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="no-insets">
+            <VBox fx:id="queriesVBox" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="1920.0" styleClass="no-insets">
                <children>
                   <Label styleClass="query-label" text="Queries">
                      <font>
                         <Font size="24.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
                   </Label>
                   <HBox fx:id="mainQueryHBox" alignment="CENTER" disable="true" prefHeight="0.0" prefWidth="1200.0" spacing="10.0" visible="false">
                      <children>
@@ -87,19 +98,22 @@
                      </padding>
                   </HBox>
                </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
             </VBox>
-            <Button fx:id="searchButton" mnemonicParsing="false" text="Search">
-               <font>
-                  <Font size="20.0" />
-               </font>
+            <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="182.0" text="Search">
                <styleClass>
-                  <String fx:value="plus-button" />
+                  <String fx:value="search-button" />
                   <String fx:value="no-insets" />
                   <String fx:value="border" />
                   <String fx:value="query-style" />
                </styleClass>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
             </Button>
-            <StackPane fx:id="tableStackPane" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="1920.0">
+            <StackPane fx:id="tableStackPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.0" prefWidth="1920.0">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>

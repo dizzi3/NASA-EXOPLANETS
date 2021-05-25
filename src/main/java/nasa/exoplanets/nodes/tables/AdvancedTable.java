@@ -16,15 +16,15 @@ public class AdvancedTable extends IntermediateTable{
 		
 		addColumnAt("Controversial Flag", "controversialFlag", 7);
 		addColumnAt("Orbit Semi-Major Axis [au]", "orbitSemiMajorAxis", 9, 250);
-		addColumnAt("Planet Radius [Jupiter Radius]", "planetRadiusComparedToJupiter", 11, 250);
-		addColumnAt("Planet Mass [Jupiter Mass]", "planetMassComparedToJupiter", 13);
-		addColumnAt("Planet Mass Provenance", "planetMassProvenance", 14);
+		addColumnAt("Planet Radius [Jupiter Radius]", "planetRadiusComparedToJupiter", 11, 300);
+		addColumnAt("Planet Mass [Jupiter Mass]", "planetMassComparedToJupiter", 13, 300);
+		addColumnAt("Planet Mass Provenance", "planetMassProvenance", 14, 270.0);
 		addColumnAt("Eccentricity", "eccentricity", 15);
 		addColumnAt("Insolation Flux [Earth Flux]", "insolationFlux", 16);
-		addColumnAt("Equilibrium Temperature [K]", "equilibriumTemperature", 17, 250);
-		addColumnAt("Data Show Transit Timing Variations", "dataShowTransitTimingVariations", 18, 280);
+		addColumnAt("Equilibrium Temperature [K]", "equilibriumTemperature", 17, 280.0);
+		addColumnAt("Data Show Transit Timing Variations", "dataShowTransitTimingVariations", 18, 320);
 		addColumnAt("Spectral Type", "spectralType", 19);
-		addColumnAt("Stellar Effective Temperature [K]", "stellarEffectiveTemperature", 20, 250);
+		addColumnAt("Stellar Effective Temperature [K]", "stellarEffectiveTemperature", 20, 300);
 		addColumnAt("Stellar Radius [Solar Radius]", "stellarRadius", 21);
 		addColumnAt("Stellar Mass [Solar Mass]", "stellarMass", 22);
 		addColumnAt("Stellar Metallicity [dex]", "stellarMetallicity", 23);

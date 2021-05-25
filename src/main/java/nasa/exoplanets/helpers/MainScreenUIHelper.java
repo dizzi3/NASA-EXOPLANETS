@@ -56,8 +56,7 @@ public class MainScreenUIHelper {
 			
 		}
 
-		//TODO: change back to 0
-		displayDataAmountChoiceBox.setValue(displayDataAmountChoiceBox.getItems().get(2));
+		displayDataAmountChoiceBox.setValue(displayDataAmountChoiceBox.getItems().get(0));
 		
 	}
 	

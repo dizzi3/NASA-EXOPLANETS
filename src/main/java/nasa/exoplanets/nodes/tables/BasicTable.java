@@ -9,7 +9,7 @@ import nasa.exoplanets.planets.BasicPlanet;
 public class BasicTable extends TableView<BasicPlanet>{
 	
 	public static double tableWidth = 0.0;
-	protected static final double defaultColumnWidth = 170.0;
+	protected static final double defaultColumnWidth = 250.0;
 	public static final double sideMargins = 50.0;
 	
 	public BasicTable(ObservableList<BasicPlanet>data) {
@@ -32,10 +32,10 @@ public class BasicTable extends TableView<BasicPlanet>{
 		addColumn("Planet Name", "name");
 		addColumn("Host Name", "hostName");
 		addColumn("Number Of Stars", "numberOfStars");
-		addColumn("Number Of Planets", "numberOfPlanets");
+		addColumn("Number Of Planets", "numberOfPlanets", 250);
 		addColumn("Discovery Method", "discoveryMethod");
 		addColumn("Discovery Year", "discoveryYear");
-		addColumn("Discovery Facility", "discoveryFacility", 300.0);
+		addColumn("Discovery Facility", "discoveryFacility", 360.0);
 		
 	}
 	
