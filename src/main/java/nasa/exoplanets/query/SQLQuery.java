@@ -17,6 +17,18 @@ public class SQLQuery {
 		
 		builder.append("+from+pscomppars+where+");
 		
+		if(elements.size() == 1) {
+			
+			if(elements.get(0).getTextField().getText().equals("")) {
+				
+				builder.delete(builder.length() - 7, builder.length());
+				builder.append("&format=json");
+				
+				return builder.toString();
+			}
+			
+		}
+		
 		for(QueryUIElement e : elements) {
 			
 			Query q = Query.find(e.getChoiceBox().getValue().toString());

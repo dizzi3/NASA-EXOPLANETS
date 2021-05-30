@@ -123,24 +123,7 @@ public class MainScreenUIHelper {
 		else 
 			table = new AdvancedTable(planets);
 		
-		//TODO: DELETE
-		//setTablePaneWidth();
-		
 		return table;
 	}
-	
-	/* TODO: DELETE
-	private void setTablePaneWidth() {
-		
-		if(BasicTable.tableWidth < tableStackPane.getPrefWidth())
-			tableStackPane.setPrefWidth(BasicTable.tableWidth);
-		else {
-			
-			Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-			tableStackPane.setPrefWidth(screenBounds.getWidth() - BasicTable.sideMargins);
-			
-		}
-		
-	}*/
 	
 }

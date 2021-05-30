@@ -14,6 +14,7 @@
   dark: #121212;
 	light-blue: #66e0ff;
 	table-text-color: #000855;
+	hover-button-color: #ccf5ff;
 
   -fx-font-family: 'Raleway';
 }
@@ -96,16 +97,13 @@
 	-fx-font-size: 17;
 }
 
-.search-button:hover, .back-button:hover{
+.search-button:hover, .back-button:hover, .plus-button:hover{
 	-fx-cursor: hand;
+	-fx-background-color: hover-button-color;
 }
 
 .plus-button{
 	-fx-font-size: 13;
-}
-
-.plus-button:hover{
-	-fx-cursor: hand;
 }
 
 
@@ -138,6 +136,13 @@
 	-fx-text-fill: table-text-color;
 }
 
+/*
+
+-fx-background-color: #334a51;
+-fx-background-color: #96afb8;
+
+*/
+
 .table-row-cell:even{
 
 }
@@ -147,6 +152,10 @@
 }
 
 .table-row-cell:hover{
+	-fx-background-color: #b3f0ff;
+}
+
+.table-view .table-row-cell:hover{
 	-fx-background-color: #b3f0ff;
 }
 

@@ -10,7 +10,6 @@ public class BasicTable extends TableView<BasicPlanet>{
 	
 	public static double tableWidth = 0.0;
 	protected static final double defaultColumnWidth = 250.0;
-	public static final double sideMargins = 50.0;
 	
 	public BasicTable(ObservableList<BasicPlanet>data) {
 		createTableFromData(data);

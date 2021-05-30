@@ -21,7 +21,7 @@
                   <Insets left="20.0" right="20.0" />
                </padding>
             </StackPane>
-            <Button mnemonicParsing="false" onAction="#OnBackButtonClick" prefHeight="37.0" prefWidth="117.0" text="BACK">
+            <Button mnemonicParsing="false" onAction="#OnBackButtonClick" prefHeight="37.0" prefWidth="117.0" text="Back">
                <styleClass>
                   <String fx:value="no-insets" />
                   <String fx:value="border" />
